@@ -37,10 +37,10 @@ module Customer =
 module Subscription =
     open Util
     let createSubscription customerId priceId =
-        let subscriptions =
-            ResizeArray<SubscriptionItemOptions> [SubscriptionItemOptions(Price = priceId)]
-
-        SubscriptionCreateOptions(Customer = customerId, Items = subscriptions)
+        SubscriptionCreateOptions(
+            Customer = customerId,
+            Items =
+                 ResizeArray<SubscriptionItemOptions> [SubscriptionItemOptions(Price = priceId)])
         |> (tryCatch <| SubscriptionService().Create)
 
 
